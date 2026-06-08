@@ -19,7 +19,7 @@ def authenticate_clickandfind(username: str, company: str, password: str) -> Aut
         return AuthenticationResult(False, "Compilare username, company e password.")
 
     import os
-    base_url = os.getenv("CLICKANDFIND_URL", "https://www.clickandfind.it")
+    base_url = os.getenv("CLICKANDFIND_URL", "https://www.clickandfind.it/t3")
     adapter = ClickAndFindInternalApiAdapter(
         username=username.strip(),
         company=company.strip(),
