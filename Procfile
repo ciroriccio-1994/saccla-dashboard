@@ -1,1 +1,1 @@
-web: playwright install chromium && playwright install-deps chromium && streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+web: playwright install chromium && playwright install-deps chromium && streamlit run app.py --server.port=${PORT:-8501} --server.address=0.0.0.0 --server.headless=true --server.enableXsrfProtection=false
