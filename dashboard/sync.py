@@ -5,7 +5,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Callable
 
-from adapters.clickandfind_internal_api import ClickAndFindInternalApiAdapter
+from adapters.http_adapter import ClickAndFindHttpAdapter as ClickAndFindInternalApiAdapter
 from core.clickandfind_real_normalizer import find_vehicle_metadata, normalize_vehicle_check
 from core.models import ClickAndFindEvent
 from core.rules import RuleEngine

@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from adapters.clickandfind_internal_api import ClickAndFindInternalApiAdapter
+from adapters.http_adapter import ClickAndFindHttpAdapter
 
 
 @dataclass
@@ -18,25 +18,18 @@ def authenticate_clickandfind(username: str, company: str, password: str) -> Aut
     if not username.strip() or not company.strip() or not password:
         return AuthenticationResult(False, "Compilare username, company e password.")
 
-    adapter = ClickAndFindInternalApiAdapter(
-        username=username.strip(),
-        company=company.strip(),
-        password=password,
-        login_mode="human_like",
-        allow_manual_fallback=False,
-        diagnostics_enabled=False,
-    )
+    adapter = ClickAndFindHttpAdapter(username=username, company=company, password=password)
     try:
         if not adapter.login():
             return AuthenticationResult(
                 False,
-                "Accesso ClickAndFind non riuscito o sessione servizi non disponibile.",
+                "Accesso ClickAndFind non riuscito. Verificare le credenziali.",
             )
         vehicles_response = adapter.get_vehicles()
-        if vehicles_response.get("parse_error"):
+        if vehicles_response.get("error"):
             return AuthenticationResult(
                 False,
-                f"Accesso riuscito, ma la lista mezzi non e disponibile: {vehicles_response['parse_error']}",
+                f"Accesso riuscito, ma la lista mezzi non è disponibile: {vehicles_response['error']}",
             )
         return AuthenticationResult(
             True,
@@ -45,6 +38,6 @@ def authenticate_clickandfind(username: str, company: str, password: str) -> Aut
             vehicles=vehicles_response.get("records", []),
         )
     except Exception as exc:
-        return AuthenticationResult(False, f"Accesso ClickAndFind non riuscito: {type(exc).__name__}.")
+        return AuthenticationResult(False, f"Errore di connessione: {type(exc).__name__}.")
     finally:
         adapter.close()
