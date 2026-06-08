@@ -1,0 +1,14 @@
+event_id,check_date,company,vehicle_id,tractor_id,trailer_id,event_type,timestamp_start,timestamp_end,duration_minutes,latitude,longitude,location_name,location_type,raw_text,source_section,severity,reasons,risk_score
+EVT-Q8-001,2026-05-25,Q8,Q8-TRK-101,Q8-T101,Q8-S501,programming,2026-05-25T08:10:00,2026-05-25T08:25:00,15,45.4780,9.3050,Autoparco Milano Est,parking_area,Driver programming activity detected in parking,operations,info,,0
+EVT-Q8-002,2026-05-25,Q8,Q8-TRK-101,Q8-T101,Q8-S501,unloading,2026-05-25T09:00:00,2026-05-25T09:45:00,45,45.5160,9.2700,Q8 Milano Depot,depot,Authorized unloading at depot,loads_unloads,info,,0
+EVT-Q8-003,2026-05-26,Q8,Q8-TRK-118,Q8-T118,Q8-S518,valve_opening,2026-05-26T11:20:00,2026-05-26T11:24:00,4,45.4300,9.1200,Area Sospetta Tangenziale,suspicious_area,Valve opened near suspicious area,operations,info,,0
+EVT-Q8-004,2026-05-26,Q8,Q8-TRK-118,Q8-T118,Q8-S518,speed_alarm,2026-05-26T12:10:00,2026-05-26T12:11:00,1,45.4642,9.1900,Milano Ring Road,road,Speed alarm 92 km/h,alarms,info,,0
+EVT-TAM-001,2026-05-27,Tamoil,TAM-204,TAM-T204,TAM-S704,unloading,2026-05-27T07:40:00,2026-05-27T08:05:00,25,45.0520,9.6920,Parcheggio A1 Piacenza,parking_area,Unloading detected during parking stop,loads_unloads,info,,0
+EVT-TAM-002,2026-05-27,Tamoil,TAM-204,TAM-T204,TAM-S704,door_opening,2026-05-27T08:20:00,2026-05-27T08:22:00,2,45.0600,9.7000,Unknown roadside point,roadside,Door opened outside authorized point,operations,info,,0
+EVT-TAM-003,2026-05-28,Tamoil,TAM-217,TAM-T217,TAM-S717,stop,2026-05-28T10:05:00,2026-05-28T10:35:00,30,45.1300,10.0300,Cremona Industrial Road,roadside,Stop during residual phase,operations,info,,0
+EVT-TAM-004,2026-05-28,Tamoil,TAM-217,TAM-T217,TAM-S717,residual_event,2026-05-28T11:00:00,2026-05-28T11:03:00,3,45.1332,10.0227,Tamoil Cremona Depot,depot,Residual sensor event,alarms,info,,0
+EVT-IP-001,2026-05-29,IP Petroli,IP-330,IP-T330,IP-S930,coupler_opening,2026-05-29T06:30:00,2026-05-29T06:33:00,3,45.0350,7.5250,Sosta Industriale Rivalta,suspicious_area,Coupler opening in suspicious area,operations,info,,0
+EVT-IP-002,2026-05-29,IP Petroli,IP-330,IP-T330,IP-S930,stop,2026-05-29T07:15:00,2026-05-29T07:50:00,35,44.9000,8.7500,A26 Service Road,roadside,Stop during unloading route segment,operations,info,,0
+EVT-IP-003,2026-05-30,IP Petroli,IP-342,IP-T342,IP-S942,unloading,2026-05-30T13:00:00,2026-05-30T13:35:00,35,45.0703,7.6869,IP Torino Customer,customer_site,Authorized customer unloading,loads_unloads,info,,0
+EVT-IP-004,2026-05-30,IP Petroli,IP-342,IP-T342,IP-S942,unloading,2026-05-30T15:10:00,2026-05-30T15:40:00,30,44.9800,7.6100,Unplanned Rural Stop,roadside,Unloading outside trip plan,loads_unloads,info,,0
+

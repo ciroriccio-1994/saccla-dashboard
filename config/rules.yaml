@@ -1,0 +1,227 @@
+ignored_event_types:
+- speed_alarm
+- overspeed
+thresholds:
+  suspected_washing_duration_minutes: 5
+  long_pause_minutes: 30
+  min_pause_minutes: 5
+rules:
+  suspected_washing:
+    enabled: true
+    name_it: Possibile lavaggio
+    severity: CRITICAL
+    event_types:
+    - portellone
+    - door_opening
+    - operation
+    source_sections: []
+    raw_ops: []
+    allowed_location_types: []
+    forbidden_location_types:
+    - parking
+    conditions:
+      raw_type_contains_any:
+      - portellone
+      - door
+      location_type_in_forbidden: true
+      duration_greater_than_minutes: suspected_washing_duration_minutes
+    explanation: 'Possibile lavaggio: portellone aperto in parcheggio oltre soglia
+      configurata.'
+    suggested_action: Raccogliere durata apertura/chiusura portellone e contattare
+      immediatamente il responsabile.
+    category: washing
+    priority: 5
+  missing_residual_on_last_unload:
+    enabled: true
+    name_it: Residuo mancante sull'ultimo scarico
+    severity: CRITICAL
+    event_types:
+    - unload
+    source_sections: []
+    raw_ops: []
+    allowed_location_types: []
+    forbidden_location_types: []
+    conditions:
+      is_last_unload_for_product: true
+      has_residual: false
+    explanation: Ultimo scarico del prodotto senza residuo R nera.
+    suggested_action: Controllare lo scarico finale e validare la presenza del residuo
+      con l'operatore.
+    category: residual
+    priority: 10
+  stop_on_last_unload:
+    enabled: true
+    name_it: Stop sullo scarico nell'ultimo scarico
+    severity: CRITICAL
+    event_types:
+    - unload
+    source_sections: []
+    raw_ops: []
+    allowed_location_types: []
+    forbidden_location_types: []
+    conditions:
+      is_last_unload_for_product: true
+      has_stop_on_unload: true
+    explanation: Stop sullo scarico S bianca presente nell'ultimo scarico.
+    suggested_action: Bloccare la verifica operativa e richiedere motivazione documentata
+      dello stop.
+    category: unload
+    priority: 15
+  stop_on_residual:
+    enabled: true
+    name_it: Stop sul residuo
+    severity: CRITICAL
+    event_types:
+    - unload
+    source_sections: []
+    raw_ops: []
+    allowed_location_types: []
+    forbidden_location_types: []
+    conditions:
+      has_stop_on_residual: true
+    explanation: Stop rilevato sul residuo.
+    suggested_action: Verificare gli ultimi scarichi del prodotto interessato e richiedere
+      chiarimenti immediati.
+    category: residual
+    priority: 20
+  programming_in_unauthorized_area:
+    enabled: true
+    name_it: Programmazione/carico in zona non autorizzata
+    severity: CRITICAL
+    event_types:
+    - load
+    source_sections: []
+    raw_ops: []
+    allowed_location_types:
+    - refinery
+    - depot
+    - gas_station
+    - workshop
+    forbidden_location_types: []
+    conditions:
+      location_type_not_in_allowed: true
+    explanation: Programmazione o carico rilevato in area non autorizzata.
+    suggested_action: Verificare il piano viaggio e contattare immediatamente l'operatore.
+    category: operational
+    priority: 30
+  unload_in_unauthorized_area:
+    enabled: true
+    name_it: Scarico in zona non autorizzata
+    severity: CRITICAL
+    event_types:
+    - unload
+    source_sections: []
+    raw_ops: []
+    allowed_location_types:
+    - refinery
+    - depot
+    - gas_station
+    - workshop
+    forbidden_location_types: []
+    conditions:
+      location_type_not_in_allowed: true
+    explanation: Scarico rilevato in parcheggio o luogo non autorizzato.
+    suggested_action: Interrompere il controllo, verificare autorizzazione e posizione
+      GPS.
+    category: unload
+    priority: 30
+  coupler_opening_in_unauthorized_area:
+    enabled: true
+    name_it: Apertura accoppiatore in zona non autorizzata
+    severity: CRITICAL
+    event_types:
+    - coupler_opening
+    - operation
+    source_sections: []
+    raw_ops: []
+    allowed_location_types:
+    - refinery
+    - depot
+    - gas_station
+    - workshop
+    forbidden_location_types: []
+    conditions:
+      raw_type_contains_any:
+      - accoppiatore
+      - coupler
+      location_type_not_in_allowed: true
+    explanation: Apertura accoppiatori in area non autorizzata.
+    suggested_action: Verificare il motivo della sosta e l'autorizzazione operativa.
+    category: opening
+    priority: 40
+  door_opening_in_unauthorized_area:
+    enabled: true
+    name_it: Apertura portellone in zona non autorizzata
+    severity: CRITICAL
+    event_types:
+    - portellone
+    - door_opening
+    - operation
+    source_sections: []
+    raw_ops: []
+    allowed_location_types:
+    - refinery
+    - depot
+    - gas_station
+    - workshop
+    forbidden_location_types: []
+    conditions:
+      raw_type_contains_any:
+      - portellone
+      - door
+      location_type_not_in_allowed: true
+    explanation: Apertura portellone in area non autorizzata.
+    suggested_action: Verificare motivo apertura e integrita del prodotto.
+    category: opening
+    priority: 40
+  valve_opening_in_unauthorized_area:
+    enabled: true
+    name_it: Apertura valvola in zona non autorizzata
+    severity: CRITICAL
+    event_types:
+    - valvole
+    - valve_opening
+    - operation
+    source_sections: []
+    raw_ops: []
+    allowed_location_types:
+    - refinery
+    - depot
+    - gas_station
+    - workshop
+    forbidden_location_types: []
+    conditions:
+      raw_type_contains_any:
+      - valvole
+      - valvola
+      - valve
+      location_type_not_in_allowed: true
+    explanation: Apertura valvole in area non autorizzata.
+    suggested_action: Contattare subito l'operatore e controllare eventuali anomalie
+      di scarico.
+    category: opening
+    priority: 40
+  pause_in_suspicious_area:
+    enabled: true
+    name_it: Pausa in zona sospetta
+    severity: HIGH
+    event_types:
+    - stop_or_pause
+    - stop
+    source_sections: []
+    raw_ops: []
+    allowed_location_types:
+    - refinery
+    - parking
+    - depot
+    - gas_station
+    - workshop
+    - service_area
+    forbidden_location_types: []
+    conditions:
+      location_type_not_in_allowed: true
+    explanation: Pausa rilevata in luogo non inerente al lavoro.
+    suggested_action: Verificare la posizione della pausa e chiedere conferma operativa
+      all'autista.
+    category: pause
+    priority: 100

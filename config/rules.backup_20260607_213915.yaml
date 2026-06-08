@@ -1,0 +1,91 @@
+ignored_event_types:
+  - speed_alarm
+  - overspeed
+
+allowed_location_types:
+  pause:
+    - refinery
+    - parking
+    - depot
+    - gas_station
+    - workshop
+    - service_area
+  programming:
+    - refinery
+    - depot
+    - gas_station
+    - workshop
+  unload:
+    - refinery
+    - depot
+    - gas_station
+    - workshop
+  opening:
+    - refinery
+    - depot
+    - gas_station
+    - workshop
+
+suspected_washing:
+  door_opening_parking_duration_threshold_minutes: 5
+
+rules:
+  - id: pause_in_suspicious_area
+    severity: high
+    condition: pause_in_suspicious_area
+    explanation: "Pausa rilevata in luogo non inerente al lavoro."
+    suggested_action: "Verificare la posizione della pausa e chiedere conferma operativa all'autista."
+
+  - id: stop_on_residual
+    severity: high
+    condition: stop_on_residual
+    explanation: "Stop rilevato sul residuo."
+    suggested_action: "Verificare gli ultimi scarichi del prodotto interessato e richiedere chiarimenti immediati."
+
+  - id: missing_residual_on_last_unload
+    severity: critical
+    condition: missing_residual_on_last_unload
+    explanation: "Ultimo scarico del prodotto senza residuo R nera."
+    suggested_action: "Controllare lo scarico finale e validare la presenza del residuo con l'operatore."
+
+  - id: stop_on_last_unload
+    severity: critical
+    condition: stop_on_last_unload
+    explanation: "Stop sullo scarico S bianca presente nell'ultimo scarico."
+    suggested_action: "Bloccare la verifica operativa e richiedere motivazione documentata dello stop."
+
+  - id: programming_in_unauthorized_area
+    severity: critical
+    condition: programming_in_unauthorized_area
+    explanation: "Programmazione o carico rilevato in area non autorizzata."
+    suggested_action: "Verificare il piano viaggio e contattare immediatamente l'operatore."
+
+  - id: unload_in_unauthorized_area
+    severity: critical
+    condition: unload_in_unauthorized_area
+    explanation: "Scarico rilevato in parcheggio o luogo non autorizzato."
+    suggested_action: "Interrompere il controllo, verificare autorizzazione e posizione GPS."
+
+  - id: door_opening_in_unauthorized_area
+    severity: critical
+    condition: door_opening_in_unauthorized_area
+    explanation: "Apertura portellone in area non autorizzata."
+    suggested_action: "Verificare motivo apertura e integrita del prodotto."
+
+  - id: valve_opening_in_unauthorized_area
+    severity: critical
+    condition: valve_opening_in_unauthorized_area
+    explanation: "Apertura valvole in area non autorizzata."
+    suggested_action: "Contattare subito l'operatore e controllare eventuali anomalie di scarico."
+
+  - id: coupler_opening_in_unauthorized_area
+    severity: critical
+    condition: coupler_opening_in_unauthorized_area
+    explanation: "Apertura accoppiatori in area non autorizzata."
+    suggested_action: "Verificare il motivo della sosta e l'autorizzazione operativa."
+
+  - id: suspected_washing
+    severity: critical
+    condition: suspected_washing
+    explanation: "Possibile lavaggio: portellone aperto in parcheggio oltre soglia configurata."
+    suggested_action: "Raccogliere durata apertura/chiusura portellone e contattare immediatamente il responsabile."

@@ -1,0 +1,6 @@
+location_name,location_type,latitude,longitude
+Autoparco Milano Est,parking_area,45.4780,9.3050
+Parcheggio A1 Piacenza,parking_area,45.0520,9.6920
+Area Sospetta Tangenziale,suspicious_area,45.4300,9.1200
+Sosta Industriale Rivalta,suspicious_area,45.0350,7.5250
+

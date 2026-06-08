@@ -1,0 +1,8 @@
+company,location_name,location_type,latitude,longitude
+Q8,Q8 Milano Depot,depot,45.5160,9.2700
+Q8,Q8 Bologna Customer,customer_site,44.4949,11.3426
+Tamoil,Tamoil Cremona Depot,depot,45.1332,10.0227
+Tamoil,Tamoil Verona Customer,customer_site,45.4384,10.9916
+IP Petroli,IP Genova Terminal,depot,44.4056,8.9463
+IP Petroli,IP Torino Customer,customer_site,45.0703,7.6869
+

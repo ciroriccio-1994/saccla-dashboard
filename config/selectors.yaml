@@ -1,0 +1,11 @@
+# Placeholder selectors for the future Playwright adapter.
+login:
+  username: ""
+  company: ""
+  password: ""
+  remember: ""
+  submit: ""
+navigation:
+  loads_unloads: ""
+  operations: ""
+  alarms: ""

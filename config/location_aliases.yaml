@@ -1,0 +1,61 @@
+locations:
+  - match: "Via Mazzini, Volla"
+    city: "Napoli"
+    location_type: parking
+    label: "Via Mazzini, Volla"
+
+  - match: "Via Garibaldi, Volla"
+    city: "Napoli"
+    location_type: parking
+    label: "Via Garibaldi, Volla"
+    notes: "Geolocalizzazione non sempre precisa; presente anche una pompa di benzina."
+
+  - match: "Via Nuova delle Brecce, Volla"
+    city: "Napoli"
+    location_type: refinery
+    label: "Via Nuova delle Brecce, Volla"
+
+  - match: "Via Palazziello, Volla"
+    city: "Napoli"
+    location_type: depot
+    label: "Via Palazziello, Volla"
+
+  - match: "Via Pietri Dorando, Casoria"
+    city: "Napoli"
+    location_type: workshop
+    label: "Via Pietri Dorando, Casoria"
+
+  - match: "Via Ponte di Galeria"
+    city: "Roma"
+    location_type: parking
+    label: "Via Ponte di Galeria"
+
+  - match: "Via del Calanzio 11"
+    city: "Roma"
+    location_type: parking
+    label: "Via del Calanzio 11"
+
+  - match: "Via Carciano"
+    city: "Roma"
+    location_type: parking
+    label: "Via Carciano"
+
+  - match: "Via degli Idrocarburi"
+    city: "Roma"
+    location_type: refinery
+    label: "Via degli Idrocarburi"
+
+  - match: "Via Fiorucci"
+    city: "Roma"
+    location_type: workshop
+    label: "Via Fiorucci"
+
+  - match: "Via degli Orti"
+    city: "Sicilia"
+    location_type: parking
+    label: "Via degli Orti"
+
+  - match: "Via Madonna del Boschetto"
+    city: "Sicilia"
+    location_type: refinery
+    label: "Via Madonna del Boschetto"

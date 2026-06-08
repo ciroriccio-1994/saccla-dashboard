@@ -1,0 +1,19 @@
+endpoints:
+  vehicles_list:
+    url: https://www.clickandfind.it/commons/services/gestione_mezzi_t3.php
+    method: POST
+  parking_list:
+    url: https://www.clickandfind.it/commons/services/gestione_poi_t3.php
+    method: POST
+  tracking:
+    url: https://www.clickandfind.it/commons/services/gettracking_fast.php
+    method: GET
+  operations:
+    url: https://www.clickandfind.it/commons/services/getoperazioni_fast.php
+    method: GET
+  alarms:
+    url: https://www.clickandfind.it/commons/services/getallarmi.php
+    method: GET
+  driver_status:
+    url: https://www.clickandfind.it/commons/services/statoautista_fast.php
+    method: GET
