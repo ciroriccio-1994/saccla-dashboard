@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from adapters.http_adapter import ClickAndFindHttpAdapter
+from adapters.clickandfind_internal_api import ClickAndFindInternalApiAdapter
 
 
 @dataclass
@@ -18,7 +18,14 @@ def authenticate_clickandfind(username: str, company: str, password: str) -> Aut
     if not username.strip() or not company.strip() or not password:
         return AuthenticationResult(False, "Compilare username, company e password.")
 
-    adapter = ClickAndFindHttpAdapter(username=username, company=company, password=password)
+    adapter = ClickAndFindInternalApiAdapter(
+        username=username.strip(),
+        company=company.strip(),
+        password=password,
+        login_mode="human_like",
+        allow_manual_fallback=False,
+        diagnostics_enabled=False,
+    )
     try:
         if not adapter.login():
             return AuthenticationResult(
@@ -26,10 +33,10 @@ def authenticate_clickandfind(username: str, company: str, password: str) -> Aut
                 "Accesso ClickAndFind non riuscito. Verificare le credenziali.",
             )
         vehicles_response = adapter.get_vehicles()
-        if vehicles_response.get("error"):
+        if vehicles_response.get("parse_error"):
             return AuthenticationResult(
                 False,
-                f"Accesso riuscito, ma la lista mezzi non è disponibile: {vehicles_response['error']}",
+                f"Accesso riuscito, ma la lista mezzi non è disponibile: {vehicles_response['parse_error']}",
             )
         return AuthenticationResult(
             True,
