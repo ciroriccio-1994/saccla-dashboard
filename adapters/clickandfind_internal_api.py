@@ -160,7 +160,10 @@ class ClickAndFindInternalApiAdapter:
 
     def login(self) -> bool:
         self.playwright = sync_playwright().start()
-        self.browser = self.playwright.chromium.launch(headless=self.headless)
+        self.browser = self.playwright.chromium.launch(
+            headless=self.headless,
+            args=["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"],
+        )
         self.context = self.browser.new_context()
         self.page = self.context.new_page()
         self.login_network_recorder.attach(self.page)
