@@ -18,10 +18,13 @@ def authenticate_clickandfind(username: str, company: str, password: str) -> Aut
     if not username.strip() or not company.strip() or not password:
         return AuthenticationResult(False, "Compilare username, company e password.")
 
+    import os
+    base_url = os.getenv("CLICKANDFIND_URL", "https://www.clickandfind.it")
     adapter = ClickAndFindInternalApiAdapter(
         username=username.strip(),
         company=company.strip(),
         password=password,
+        base_url=base_url,
         login_mode="human_like",
         allow_manual_fallback=False,
         diagnostics_enabled=False,
